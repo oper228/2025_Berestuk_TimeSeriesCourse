@@ -2,8 +2,8 @@ import numpy as np
 import math
 import copy
 
-from modules.utils import sliding_window, z_normalize
-from modules.metrics import DTW_distance
+from .utils import sliding_window, z_normalize
+from .metrics import DTW_distance
 
 
 def apply_exclusion_zone(array: np.ndarray, idx: int, excl_zone: int) -> np.ndarray:
