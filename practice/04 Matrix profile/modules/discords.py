@@ -1,6 +1,6 @@
 import numpy as np
 
-from modules.utils import *
+from .utils import *
 
 
 def top_k_discords(matrix_profile: dict, top_k: int = 3) -> dict:
@@ -21,7 +21,20 @@ def top_k_discords(matrix_profile: dict, top_k: int = 3) -> dict:
     discords_dist = []
     discords_nn_idx = []
 
-    # INSERT YOUR CODE
+    mp_values = np.copy(matrix_profile['mp'])
+    mp_indices = matrix_profile['mpi']
+    excl_zone = matrix_profile['excl_zone']
+
+    for _ in range(top_k):
+        discord_idx = np.argmax(mp_values)
+        discord_dist = mp_values[discord_idx]
+        nn_idx = mp_indices[discord_idx]
+
+        discords_idx.append(discord_idx)
+        discords_dist.append(discord_dist)
+        discords_nn_idx.append(nn_idx)
+
+        mp_values = apply_exclusion_zone(mp_values, discord_idx, excl_zone, val=-np.inf)
 
     return {
         'indices' : discords_idx,
